@@ -28,14 +28,13 @@
         <% end %>
       </tbody>
     </table>
-    <br>
-    <%= link_to 'New User', new_user_path %>
   </div>
 <% #else %>
   <div class="jumbotron">
-    <h1>Jumbotron heading</h1>
+    <h1>To Do List</h1>
     <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-    <p><%= link_to "Sign up today", signup_path, class: "btn btn-lg btn-success" %>
+    <%= link_to "Sign up today", signup_path, class: "btn btn-lg btn-success" %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-lg btn-success" %>
   </div>
 
   <div class="row marketing">

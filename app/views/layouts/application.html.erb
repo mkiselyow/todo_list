@@ -34,7 +34,6 @@
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><%= link_to "Main Page", root_path %></li>
             <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
             <li role="presentation">
               <% if current_user %>
                 <li role="presentation"><p class="text-align-last">Logged in as<br><small><%= current_user.email %>.</small></p></li>
@@ -42,12 +41,13 @@
                 <li></li>
               <% else %>
                 <li role="presentation"><%= link_to "Sign Up", signup_path %></li>
+                <li role="presentation"><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
                 <li role="presentation"><%= link_to "Log In", signin_path %></li>
               <% end %>
             </li>
           </ul>
         </nav>
-        <h3 class="text-muted">Project name</h3>
+        <h3 class="text-muted">To Do List</h3>
       </div>
       <%= yield %>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
