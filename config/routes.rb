@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :users
 
-  root to: "users#index"
+  root to: "static_pages#index"
+  match 'index', to: 'static_pages#index', via: [:get, :post]
 
   resources :sessions, only: [:new, :create, :destroy]
 

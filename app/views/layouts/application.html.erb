@@ -23,6 +23,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "jumbotron-narrow" %>
+    <%= stylesheet_link_tag "custom" %>
 
   </head>
 
@@ -31,9 +32,19 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation" class="active"><%= link_to "Main Page", root_path %></li>
             <li role="presentation"><a href="#">About</a></li>
             <li role="presentation"><a href="#">Contact</a></li>
+            <li role="presentation">
+              <% if current_user %>
+                <li role="presentation"><p class="text-align-last">Logged in as<br><small><%= current_user.email %>.</small></p></li>
+                <li role="presentation"><%= link_to("Sign Out", signout_path, method: :delete) %></li>
+                <li></li>
+              <% else %>
+                <li role="presentation"><%= link_to "Sign Up", signup_path %></li>
+                <li role="presentation"><%= link_to "Log In", signin_path %></li>
+              <% end %>
+            </li>
           </ul>
         </nav>
         <h3 class="text-muted">Project name</h3>
