@@ -16,6 +16,11 @@
           <td><%= link_to 'Show', user %></td>
           <td><%= link_to 'Edit', edit_user_path(user) %></td>
           <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <% if current_user == user %>
+            <%= 'logged in' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -26,7 +31,7 @@
 <div class="jumbotron">
   <h1>Jumbotron heading</h1>
   <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-  <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+  <p><%= link_to "Sign up today", signup_path, class: "btn btn-lg btn-success" %>
 </div>
 
 <div class="row marketing">
