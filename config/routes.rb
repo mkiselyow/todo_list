@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
+  #match '/delete_comment', to: 'tasks#destroy', via: 'delete'
+  get '/projects/:project_id/tasks/:id(.:format)', to: 'tasks#destroy', as: 'delete_comment', via: 'delete'
+
 
   match 'auth/:provider/callback', to: 'sessions#fb_create',     via: 'get'
   match 'auth/failure', to: redirect('/'),                       via: 'get'
