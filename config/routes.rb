@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :projects
+  resources :tasks
   resources :users
 
   root to: "static_pages#index"
