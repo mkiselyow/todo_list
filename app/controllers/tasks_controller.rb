@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :set_project
-  before_action :authorized, only: [:index]
-  # before_action :correct_user_tasks, :except => [:edit, :update, :destroy]
+  # before_action :set_project
+  before_action :authorized, except: [:index]
+  before_action :correct_user_tasks#, :except => [:edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
@@ -79,9 +79,9 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = current_user.projects.find(params[:project_id])
-    end
+    # def set_project
+    #   @project = current_user.projects.find(params[:project_id])
+    # end
 
     def set_task
       @task = Task.find(params[:id])
@@ -92,8 +92,8 @@ class TasksController < ApplicationController
       params.fetch(:task, {}).permit(:name, :priority, :status, :deadline, :project_id, :user_id)
     end
 
-    # def correct_user_tasks
-    #   @task = current_user.tasks.find_by_id(params[:id])
-    #   redirect_to root_url, :notice => 'Can\'t' if @task.nil? 
-    # end
+    def correct_user_tasks
+      # @task = current_user.tasks.find_by_id(params[:id])
+      # redirect_to root_url, :notice => 'Can\'t' if @task.nil?
+    end
 end

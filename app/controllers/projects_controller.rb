@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :authorized, only: [:index]
+  before_action :authorized, except: [:index]
   # before_action :correct_user, :only => [:edit, :update, :destroy]
 
   # GET /projects

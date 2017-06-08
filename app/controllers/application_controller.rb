@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
 
     def authorized
-      redirect_to root_url if current_user
+      redirect_to root_url if current_user == nil
     end
 
     def correct_user

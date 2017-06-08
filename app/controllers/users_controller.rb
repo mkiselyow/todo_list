@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authorized, only: [:index, :new]
+  before_action :authorized, except: [:index, :new]
   before_action :correct_user, :only => [:edit, :update, :destroy]
 
 

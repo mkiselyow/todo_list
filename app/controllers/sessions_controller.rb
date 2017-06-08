@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :authorized, only: [:create, :fb_create]
+  before_action :authorized, except: [:create, :fb_create]
 
   def create
     user = User.find_by_email(params[:session][:email].downcase)
