@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :set_project
   before_action :authorized, only: [:index]
-  # before_action :correct_user, :only => [:edit, :update, :destroy]
+  # before_action :correct_user_tasks, :except => [:edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
@@ -33,6 +33,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @project = Project.find(params[:project_id])
+    @tasks = @project.tasks.find(params[:id])
   end
 
   # POST /tasks
@@ -89,4 +91,9 @@ class TasksController < ApplicationController
     def task_params
       params.fetch(:task, {}).permit(:name, :priority, :status, :deadline, :project_id, :user_id)
     end
+
+    # def correct_user_tasks
+    #   @task = current_user.tasks.find_by_id(params[:id])
+    #   redirect_to root_url, :notice => 'Can\'t' if @task.nil? 
+    # end
 end

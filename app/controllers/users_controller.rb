@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorized, only: [:index, :new]
-  # before_action :correct_user, :only => [:edit, :update, :destroy]
+  before_action :correct_user, :only => [:edit, :update, :destroy]
 
 
   # GET /users
@@ -59,9 +59,13 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    session[:user_id] = nil
-    sign_out
+    if @user.provider
+      signout_fb
+      @user.destroy
+    else
+      sign_out
+      @user.destroy
+    end
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }

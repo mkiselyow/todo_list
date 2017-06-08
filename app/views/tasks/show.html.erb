@@ -20,5 +20,5 @@
   <%= @task.deadline %>
 </p>
 
-<%= link_to 'Edit', edit_project_task_path(@task) %> |
+<%= link_to 'Edit', edit_project_task_path(@task.project, @task) %> |
 <%= link_to 'Back', root_path %>

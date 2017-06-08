@@ -16,10 +16,12 @@ Rails.application.routes.draw do
 
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/signout', to: 'sessions#destroy', via: 'get'
 
   #match '/delete_comment', to: 'tasks#destroy', via: 'delete'
   get '/projects/:project_id/tasks/:id(.:format)', to: 'tasks#destroy', as: 'delete_comment', via: 'delete'
+  get '/users/:user_id/projects/:id(.:format)', to: 'projects#destroy', as: 'delete_project', via: 'delete'
+
 
 
   match 'auth/:provider/callback', to: 'sessions#fb_create',     via: 'get'

@@ -37,7 +37,7 @@
             <li role="presentation">
               <% if current_user %>
                 <li role="presentation"><p class="text-align-last">Logged in as<br><small><%= current_user.email %>.</small></p></li>
-                <li role="presentation"><%= link_to("Sign Out", signout_path, method: :delete) %></li>
+                <li role="presentation"><%= link_to("Sign Out", signout_path) %></li>
                 <li></li>
               <% else %>
                 <li role="presentation"><%= link_to "Sign Up", signup_path %></li>

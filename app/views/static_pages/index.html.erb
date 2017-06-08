@@ -33,7 +33,7 @@
   <div class="jumbotron">
     <h1>To Do List</h1>
     <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-    <% if signed_in? %>
+    <% if @projects.any? %>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -51,11 +51,11 @@
               <td><%= project.created_at %></td>
               <td><%= link_to 'Show', user_project_path(project.user, project) %></td>
               <td><%= link_to 'Edit', edit_user_project_path(project.user, project) %></td>
-              <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Destroy', delete_project_path(project.user, project), method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <td><%= link_to 'Create Task', new_project_task_path(project) %></td>
             </tr>
-            <tr>
-              <% project.tasks.each do |task| %>
+            <% project.tasks.each do |task| %>
+              <tr>
                 <td><%= task.id %> Task</td>
                 <td><%= task.name %></td>
                 <td><%= task.priority %></td>
@@ -63,11 +63,14 @@
                 <td><%= link_to 'Show', project_task_path(project, task) %></td>
                 <td><%= link_to 'Edit', edit_project_task_path(project, task) %></td>
                 <td><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% end %>
-            </tr>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
+    <% else %>
+    <% end %>
+    <% if signed_in? %>
       <%= link_to "Create New Project", new_user_project_path(current_user), class: "btn btn-lg btn-success" %>
     <% else %>
       <%= link_to "Sign up today", signup_path, class: "btn btn-lg btn-success" %>
