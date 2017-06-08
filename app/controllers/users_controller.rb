@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorized, only: [:index, :new]
-  before_action :correct_user, :only => [:edit, :update, :destroy]
+  # before_action :correct_user, :only => [:edit, :update, :destroy]
 
 
   # GET /users
@@ -77,10 +77,5 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.fetch(:user, {}).permit(:first_name, :last_name, :email, :password_confirmation, :password, :uid, :provider, :oauth_token, :oauth_expires_at)
-    end
-
-    def correct_user
-      @user = User.find_by_id(params[:id])
-      redirect_to root_url unless current_user == @user
     end
 end

@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
     def authorized
       redirect_to root_url if current_user
     end
+
+    # def correct_user
+    #   @user = User.find_by_id(params[:id])
+    #   redirect_to root_url unless current_user == @user
+    # end
+    # helper_method :correct_user
 end

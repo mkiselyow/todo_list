@@ -34,6 +34,40 @@
     <h1>To Do List</h1>
     <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
     <% if signed_in? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>user_id</th>
+            <th>created_at</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        </tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <td><%= project.name %> Project</td>
+              <td><%= project.user_id %></td>
+              <td><%= project.created_at %></td>
+              <td><%= link_to 'Show', user_project_path(project.user, project) %></td>
+              <td><%= link_to 'Edit', edit_user_project_path(project.user, project) %></td>
+              <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Create Task', new_project_task_path(project) %></td>
+            </tr>
+            <tr>
+              <% project.tasks.each do |task| %>
+                <td><%= task.id %> Task</td>
+                <td><%= task.name %></td>
+                <td><%= task.priority %></td>
+                <td><%= task.deadline %></td>
+                <td><%= link_to 'Show', project_task_path(project, task) %></td>
+                <td><%= link_to 'Edit', edit_project_task_path(project, task) %></td>
+                <td><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
       <%= link_to "Create New Project", new_user_project_path(current_user), class: "btn btn-lg btn-success" %>
     <% else %>
       <%= link_to "Sign up today", signup_path, class: "btn btn-lg btn-success" %>
