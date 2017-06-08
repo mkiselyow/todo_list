@@ -21,8 +21,12 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @project = Project.find(params[:project_id])
-    @tasks = @project.tasks.build(task_params)
-    @tasks.user_id = current_user.id
+    if current_user == @project.user
+      @tasks = @project.tasks.build(task_params)
+      @tasks.user_id = current_user.id
+    else
+      redirect_to root_path, notice: 'You can\'t create task for this project.'
+    end
   end
 
   # GET /tasks/1/edit
