@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   # before_action :set_project
-  before_action :authorized, except: [:index]
+  before_action :authorized, except: [:index, :new]
   before_action :correct_user_tasks#, :except => [:edit, :update, :destroy]
 
   # GET /tasks
@@ -23,12 +23,6 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @tasks = @project.tasks.build(task_params)
     @tasks.user_id = current_user.id
-    @tasks.save!
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @comment }
-    end
   end
 
   # GET /tasks/1/edit
@@ -40,10 +34,12 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    @project = Project.find(params[:project_id])
+    @tasks = @project.tasks.build(task_params)
+    @tasks.user_id = current_user.id
 
     respond_to do |format|
-      if @task.save
+      if @tasks.save
         format.html { redirect_to root_path, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
@@ -93,7 +89,10 @@ class TasksController < ApplicationController
     end
 
     def correct_user_tasks
-      # @task = current_user.tasks.find_by_id(params[:id])
-      # redirect_to root_url, :notice => 'Can\'t' if @task.nil?
+      if current_user && @task
+        unless @task.user == current_user
+          redirect_to root_path
+        end
+      end
     end
 end

@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :authorized, except: [:index]
-  # before_action :correct_user, :only => [:edit, :update, :destroy]
-
+  before_action :correct_user_projects# :only => [:edit, :update, :destroy]
+  
   # GET /projects
   # GET /projects.json
   def index
@@ -72,5 +72,13 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :user_id)
+    end
+
+    def correct_user_projects
+      if current_user && @project
+        unless @project.user == current_user
+          redirect_to root_path
+        end
+      end
     end
 end
