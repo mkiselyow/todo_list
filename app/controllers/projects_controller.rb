@@ -77,7 +77,7 @@ class ProjectsController < ApplicationController
     def correct_user_projects
       if current_user && @project
         unless @project.user == current_user
-          redirect_to root_path
+          redirect_to root_path, notice: 'You can\'t change this project.'
         end
       end
     end
