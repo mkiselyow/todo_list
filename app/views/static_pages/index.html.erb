@@ -1,4 +1,77 @@
 <% #if signed_in? %>
+  <section>
+    <h2>Features</h2>
+    <ul id="features">
+      <li>Less than 1KB (minified).
+      <li>Built using native HTML5 drag and drop API.</li>
+      <li>Supports both list and grid style layouts.</li>
+      <li>Similar API and behaviour to jquery-ui sortable plugin.</li>
+      <li>Works in IE 5.5+, Firefox 3.5+, Chrome 3+, Safari 3+ and, Opera 12+.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Sortable List</h2>
+    <ul class="sortable list">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+      <li>Item 6</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Sortable Grid</h2>
+    <ul class="sortable grid">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+      <li>Item 6</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Exclude Items</h2>
+    <ul class="exclude list">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li class="disabled">Item 4</li>
+      <li class="disabled">Item 5</li>
+      <li class="disabled">Item 6</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Sortable List With Handles</h2>
+    <ul class="handles list">
+      <li><span>::</span> Item 1</li>
+      <li><span>::</span> Item 2</li>
+      <li><span>::</span> Item 3</li>
+      <li><span>::</span> Item 4</li>
+      <li><span>::</span> Item 5</li>
+      <li><span>::</span> Item 6</li>
+    </ul>
+  </section>
+  <section id="connected">
+    <h2>Connected Sortable Lists</h2>
+    <ul class="connected list">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+      <li>Item 6</li>
+    </ul>
+    <ul class="connected list no2">
+      <li class="highlight">Item 1</li>
+      <li class="highlight">Item 2</li>
+      <li class="highlight">Item 3</li>
+      <li class="highlight">Item 4</li>
+      <li class="highlight">Item 5</li>
+      <li class="highlight">Item 6</li>
+    </ul>
+  </section>
   <div>
     <h1>Users</h1>
     <table class="table table-striped">
@@ -34,30 +107,35 @@
     <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
     <% if @projects.any? %>
       <ul class="list-group">
-          <% @projects.each do |project| %>
-            <li class="list-group-item list-group-item-info">
-              <div class="row">
-                <div class="col-md-3"><strong><%= project.name %></strong> Project</div>
-                <div class="col-md-4"><%= project.user.email %></div>
-                <div class="col-md-1"><%= link_to 'Show', user_project_path(project.user, project) %></div>
-                <div class="col-md-1"><%= link_to 'Edit', edit_user_project_path(project.user, project) %></div>
-                <div class="col-md-1"><%= link_to 'Destroy', delete_project_path(project.user, project), method: :delete, data: { confirm: 'Are you sure?' } %></div>
-                <div class="col-md-2"><%= link_to 'New Task', new_project_task_path(project) %></div>
-              </div>
-            </li>
-            <% project.tasks.order(:id).each do |task| %>
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-md-2"><%= task.id %> Task</div>
-                  <div class="col-md-2"><%= task.name %></div>
-                  <div class="col-md-4"><%= task.deadline %></div>
-                  <div class="col-md-1"><%= link_to 'Show', project_task_path(project, task) %></div>
-                  <div class="col-md-1"><%= link_to 'Edit', edit_project_task_path(project, task) %></div>
-                  <div class="col-md-1"><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></div>
-                </div>
-              </li>
-            <% end %>
-          <% end %>
+        <% @projects.each do |project| %>
+          <li class="list-group-item list-group-item-info">
+            <div class="row">
+              <div class="col-md-3"><strong><%= project.name %></strong> Project</div>
+              <div class="col-md-4"><%= project.user.email %></div>
+              <div class="col-md-1"><%= link_to 'Show', user_project_path(project.user, project) %></div>
+              <div class="col-md-1"><%= link_to 'Edit', edit_user_project_path(project.user, project) %></div>
+              <div class="col-md-1"><%= link_to 'Destroy', delete_project_path(project.user, project), method: :delete, data: { confirm: 'Are you sure?' } %></div>
+              <div class="col-md-2"><%= link_to 'New Task', new_project_task_path(project) %></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <ul class="list-group sortable list">
+              <% project.tasks.each do |task| #.order(:id)%>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-md-2"><%= task.id %> Task</div>
+                    <div class="col-md-2"><%= task.name %></div>
+                    <div class="col-md-4"><%= task.deadline %></div>
+                    <div class="col-md-1"><%= link_to 'Show', project_task_path(project, task) %></div>
+                    <div class="col-md-1"><%= link_to 'Edit', edit_project_task_path(project, task) %></div>
+                    <div class="col-md-1"><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
     <% else %>
     <% end %>
     <% if signed_in? %>
