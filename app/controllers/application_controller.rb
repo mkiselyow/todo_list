@@ -17,4 +17,13 @@ class ApplicationController < ActionController::Base
       redirect_to root_url unless current_user == @user
     end
     helper_method :correct_user
+
+    def correct_user_tasks
+      if current_user && @task
+        unless @task.user == current_user
+          redirect_to root_path, notice: 'You can\'t change task for this project.'
+        end
+      end
+    end
+    helper_method :correct_user_tasks
 end

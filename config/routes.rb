@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
+  resources :static_pages do
+    put :sort, on: :collection
+  end
+
   root to: "static_pages#index"
   match 'index', to: 'static_pages#index', via: [:get, :post]
 
