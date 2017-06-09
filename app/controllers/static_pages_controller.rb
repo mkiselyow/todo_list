@@ -8,8 +8,21 @@ class StaticPagesController < ApplicationController
 
   def sort
     params[:order].each do |key,value|
-      @task =Task.find(value[:id]).update_attribute(:priority,value[:position])
+      @task = Task.find(value[:id])
+      unless @task.user == current_user
+        Task.find(value[:id]).update_attribute(:priority,value[:position])
+      end
     end
     render :nothing => true
   end
+
+  private
+
+    def correct_user_tasks
+      if current_user && @task
+        if @task.user == current_user
+          redirect_to root_path, notice: 'You can\'t change task for this project.'
+        end
+      end
+    end
 end

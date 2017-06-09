@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :set_project
   before_action :authorized, except: [:index, :new]
   before_action :correct_user_tasks#, :except => [:edit, :update, :destroy]
 
@@ -79,10 +78,6 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_project
-    #   @project = current_user.projects.find(params[:project_id])
-    # end
-
     def set_task
       @task = Task.find(params[:id])
     end
@@ -90,5 +85,13 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.fetch(:task, {}).permit(:name, :priority, :status, :deadline, :project_id, :user_id)
+    end
+
+    def correct_user_tasks
+      if current_user && @task
+        if @task.user == current_user
+          redirect_to root_path, notice: 'You can\'t change task for this project.'
+        end
+      end
     end
 end
