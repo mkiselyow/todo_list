@@ -16,9 +16,19 @@
   </div>
 
   <div class="field">
-    <%= f.label :deadline %>
-    <%= f.datetime_select :deadline, id: :task_deadline %>
+    <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" id="task_deadline" name="task[deadline]" />
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
   </div>
+
 
   <div class="actions">
     <%= f.submit %>
