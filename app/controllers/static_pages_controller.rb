@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   before_action :authorized, except: [:index]
   before_action :correct_user_tasks
+  
   def index
     @users = User.all
     @projects = Project.all
