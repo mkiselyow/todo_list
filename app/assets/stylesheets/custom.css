@@ -8,3 +8,9 @@
   height: 80px;
   margin-bottom: 10px;
 }
+
+@media all and (max-width: 995px) {
+  .s_devises {
+    display: none;
+  }
+}

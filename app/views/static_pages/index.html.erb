@@ -37,25 +37,37 @@
         <% @projects.each do |project| %>
           <li class="list-group-item list-group-item-info">
             <div class="row">
-              <div class="col-md-3"><strong><%= project.name %></strong> Project</div>
-              <div class="col-md-4"><%= project.user.email %></div>
-              <div class="col-md-1"><%= link_to 'Show', user_project_path(project.user, project) %></div>
-              <div class="col-md-1"><%= link_to 'Edit', edit_user_project_path(project.user, project) %></div>
-              <div class="col-md-1"><%= link_to 'Destroy', delete_project_path(project.user, project), method: :delete, data: { confirm: 'Are you sure?' } %></div>
-              <div class="col-md-2"><%= link_to 'New Task', new_project_task_path(project) %></div>
+              <div class="col-md-3 col-xs-3"><strong><%= project.name %></strong> Project</div>
+              <div class="col-md-4 s_devises"><%= project.user.email %></div>
+              <div class="col-md-1 col-xs-3"><%= link_to 'Show', user_project_path(project.user, project) %></div>
+              <div class="col-md-1 col-xs-3"><%= link_to 'Edit', edit_user_project_path(project.user, project) %></div>
+              <div class="col-md-1 col-xs-3"><%= link_to 'Destroy', delete_project_path(project.user, project), method: :delete, data: { confirm: 'Are you sure?' } %></div>
+              <div class="col-md-2 s_devises"><%= link_to 'New Task', new_project_task_path(project) %></div>
             </div>
           </li>
           <li class="list-group-item">
             <ul class="list-group sortable list">
               <% project.tasks.each do |task| %>
-                <li class="list-group-item item <% if current_user == task.user && current_user %><%= 'disabled' %><% end %>" data-id="<%= task.id %>" >
+                <li class="list-group-item item 
+                  <% if current_user == task.user && current_user %>
+                  <%= 'disabled' %>
+                  <% end %>" data-id="<%= task.id %>" >
                   <div class="row">
-                    <div class="col-md-2"><%= task.id %> Task</div>
-                    <div class="col-md-2"><%= task.name %></div>
-                    <div class="col-md-4"><%= task.deadline %></div>
-                    <div class="col-md-1"><%= link_to 'Show', project_task_path(project, task) %></div>
-                    <div class="col-md-1"><%= link_to 'Edit', edit_project_task_path(project, task) %></div>
-                    <div class="col-md-1"><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                    
+                    <div class="col-md-2 s_devises"><%= task.id %> Task</div>
+                    <div class="col-md-2 col-xs-3">
+                      <% if task.status %>
+                        <del>
+                      <% end %>
+                      <%= task.name %>
+                      <% if task.status %>
+                        </del>
+                      <% end %>
+                    </div>
+                    <div class="col-md-4 s_devises"><%= task.deadline %></div>
+                    <div class="col-md-1 col-xs-3"><%= link_to 'Show', project_task_path(project, task) %></div>
+                    <div class="col-md-1 col-xs-3"><%= link_to 'Edit', edit_project_task_path(project, task) %></div>
+                    <div class="col-md-1 col-xs-3"><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></div>
                   </div>
                 </li>
               <% end %>
