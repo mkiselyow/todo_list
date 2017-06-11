@@ -139,3 +139,9 @@ $(document).ready(ready);
  * if using turbolinks
  */
 $(document).on('page:load', ready);
+
+//for tooltip
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})

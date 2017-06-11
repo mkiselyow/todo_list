@@ -16,6 +16,12 @@
   </div>
 
   <div class="field">
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+    <div type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</div>
+  </div>
+
+  <div class="field">
     <div class='input-group date' id='datetimepicker1'>
         <input type='text' class="form-control" id="task_deadline" name="task[deadline]" style="display: none" />
         <%= f.text_field :deadline, id: :deadline, class: 'form-control' %>

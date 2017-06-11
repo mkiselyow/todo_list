@@ -51,7 +51,7 @@
                 <li class="list-group-item item 
                   <% if current_user == task.user && current_user %>
                   <%= 'disabled' %>
-                  <% end %>" data-id="<%= task.id %>" >
+                  <% end %>" data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>">
                   <div class="row">
                     
                     <div class="col-md-2 s_devises"><%= task.id %> Task</div>
