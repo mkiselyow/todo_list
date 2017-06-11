@@ -1,6 +1,7 @@
 <% #if signed_in? %>
   <div>
     <h1>Users</h1>
+    <div id='index-page' data-users='<%= @users.to_json %>'>
     <table class="table table-striped">
       <thead>
           <th>First name</th>
