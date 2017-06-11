@@ -40,6 +40,10 @@ gem 'omniauth-facebook'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
+#add_avatar_to_user
+gem 'paperclip'
+
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

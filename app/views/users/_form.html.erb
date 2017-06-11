@@ -33,6 +33,10 @@
       <%= f.password_field :password_confirmation, placeholder: "confirmation" %>
     </div>
     <div class="field">
+      <%= f.label :avatar %><br>
+      <%= f.file_field :avatar, placeholder: "avatar" %>
+    </div>
+    <div class="field">
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     </div>
   </div>

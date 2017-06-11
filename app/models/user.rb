@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_secure_password
   has_many :projects, dependent: :destroy
   has_many :tasks, through: :projects
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "50x50>" }
+  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
