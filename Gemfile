@@ -43,6 +43,9 @@ gem 'bootstrap3-datetimepicker-rails'
 #add_avatar_to_user
 gem 'paperclip'
 
+#react table realization
+gem 'webpacker'
+
 
 
 # Use Capistrano for deployment
