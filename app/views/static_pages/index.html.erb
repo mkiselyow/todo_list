@@ -1,7 +1,8 @@
 <% #if signed_in? %>
   <div>
     <h1>Users</h1>
-    <div id='index-page' data-users='<%= @users.to_json %>'>
+    <%= javascript_pack_tag 'users' %>
+    <div id='index-page' data-users='<%= @users.to_json %>'></div>
     <table class="table table-striped">
       <thead>
           <th>First name</th>
