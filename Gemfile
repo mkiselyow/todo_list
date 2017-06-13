@@ -46,6 +46,9 @@ gem 'paperclip'
 #react table realization
 gem 'webpacker'
 
+#heroku has error
+gem "autoprefixer-rails"
+
 
 
 # Use Capistrano for deployment
