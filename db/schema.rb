@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(version: 20170611113055) do
     t.index ["user_id", "created_at"], name: "index_projects_on_user_id_and_created_at"
   end
 
-  create_table "records", force: :cascade do |t|
-    t.string "title"
-    t.date "date"
-    t.float "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.integer "priority"
