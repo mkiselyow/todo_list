@@ -3,8 +3,6 @@
     <h1>Users</h1>
     <%= javascript_pack_tag 'users' %>
     <div id='index-page' data-users='<%= @users.to_json %>'></div>
-    <%= javascript_pack_tag 'hello' %>
-    <div id='hello-page'></div>
     <table class="table table-striped">
       <thead>
           <th>First name</th>
@@ -58,9 +56,14 @@
             <ul class="list-group sortable list">
               <% project.tasks.each do |task| %>
                 <li class="list-group-item item 
-                  <% if current_user == task.user && current_user %>
-                  <%= 'disabled' %>
-                  <% end %>" data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>">
+                  <% if current_user %>
+                    <% if current_user != task.user %>
+                      <%= 'disabled' %>
+                    <% end %>
+                  <% else %>
+                    <%= 'disabled' %>
+                  <% end %>
+                    " data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>">
                   <div class="row">
                     
                     <div class="col-md-2 s_devises"><%= task.id %> Task</div>

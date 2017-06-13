@@ -13,6 +13,7 @@ export default class User extends React.Component {
         {this.users.map(function(user){
             return (
                 <div key={user.id}>
+                  <li key={"hello_react"}>{"hello_react"}</li>
                   <li key={user.first_name}>{user.first_name}</li>
                   <li key={user.last_name}>{user.last_name}</li>
                 </div>
