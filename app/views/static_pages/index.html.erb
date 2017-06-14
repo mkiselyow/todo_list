@@ -76,7 +76,7 @@
                         </del>
                       <% end %>
                     </div>
-                    <div class="col-md-4 s_devises"><%= task.deadline.strftime('%d/%m/%Y %H:%M') %></div>
+                    <div class="col-md-4 s_devises"><%= if task.deadline then task.deadline.strftime('%d/%m/%Y %H:%M') end %></div>
                     <div class="col-md-1 col-xs-3"><%= link_to 'Show', project_task_path(project, task) %></div>
                     <div class="col-md-1 col-xs-3"><%= link_to 'Edit', edit_project_task_path(project, task) %></div>
                     <div class="col-md-1 col-xs-3"><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></div>
