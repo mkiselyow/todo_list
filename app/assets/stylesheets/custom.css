@@ -14,3 +14,11 @@
     display: none;
   }
 }
+
+.super_functions {
+  text-align: left;
+}
+
+.list-group-item.item {
+  list-style-type: none;
+}
