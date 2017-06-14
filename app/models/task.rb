@@ -17,8 +17,4 @@ class Task < ApplicationRecord
   def validate
     errors.add(:deadline, "is invalid") if @deadline_invalid
   end
-
-  def time_format
-    myobject.my_datetime = Time.strptime(self.deadline, '%d/%m/%Y %H:%M')
-  end
 end
