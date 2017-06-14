@@ -1,8 +1,6 @@
 <% #if signed_in? %>
   <div>
     <h1>Users</h1>
-    <%= javascript_pack_tag 'users' %>
-    <div id='index-page' data-users='<%= @users.to_json %>'></div>
     <table class="table table-striped">
       <thead>
           <th>First name</th>
@@ -62,8 +60,7 @@
                     <% end %>
                   <% else %>
                     <%= 'disabled' %>
-                  <% end %>
-                    " data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>">
+                  <% end %>" data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>">
                   <div class="row">
                     
                     <div class="col-md-2 s_devises"><%= task.id %> Task</div>
