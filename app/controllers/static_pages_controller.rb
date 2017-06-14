@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
   def sort
     params[:order].each do |key,value|
       @task = Task.find(value[:id])
-      unless @task.user == current_user
+      if @task.user == current_user
         Task.find(value[:id]).update_attribute(:priority,value[:position])
       end
     end
