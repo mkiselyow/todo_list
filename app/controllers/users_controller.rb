@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @users = User.all
   end
 
   # GET /users/1/edit
@@ -33,9 +34,11 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         sign_in @user
+        format.js
         format.html { redirect_to root_url, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
+        format.js
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -67,6 +70,7 @@ class UsersController < ApplicationController
       @user.destroy
     end
     respond_to do |format|
+      format.js #{ render nothing: true }
       format.html { redirect_to root_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end

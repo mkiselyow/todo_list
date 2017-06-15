@@ -1,43 +1,45 @@
-<%= form_with(model: user, local: true) do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="new_user">  
+  <%= form_with(model: @user, local: true, remote: true) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <div class="field">
+        <%= f.label :first_name %><br>
+        <%= f.text_field :first_name, placeholder: "name" %>
+      </div>
+      <div class="field">
+        <%= f.label :last_name %><br>
+        <%= f.text_field :last_name, placeholder: "surname" %>  
+      </div>
+      <div class="field">
+        <%= f.label :email %><br>
+        <%= f.text_field :email, placeholder: "email" %>
+      </div>
+      <div class="field">
+        <%= f.label :password %><br>
+        <%= f.password_field :password, placeholder: "password" %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation, "Confirm Password" %><br>
+        <%= f.password_field :password_confirmation, placeholder: "confirmation" %>
+      </div>
+      <div class="field">
+        <%= f.label :avatar %><br>
+        <%= f.file_field :avatar, placeholder: "avatar" %>
+      </div>
+      <div class="field">
+        <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="actions">
-    <div class="field">
-      <%= f.label :first_name %><br>
-      <%= f.text_field :first_name, placeholder: "name" %>
-    </div>
-    <div class="field">
-      <%= f.label :last_name %><br>
-      <%= f.text_field :last_name, placeholder: "surname" %>  
-    </div>
-    <div class="field">
-      <%= f.label :email %><br>
-      <%= f.text_field :email, placeholder: "email" %>
-    </div>
-    <div class="field">
-      <%= f.label :password %><br>
-      <%= f.password_field :password, placeholder: "password" %>
-    </div>
-    <div class="field">
-      <%= f.label :password_confirmation, "Confirm Password" %><br>
-      <%= f.password_field :password_confirmation, placeholder: "confirmation" %>
-    </div>
-    <div class="field">
-      <%= f.label :avatar %><br>
-      <%= f.file_field :avatar, placeholder: "avatar" %>
-    </div>
-    <div class="field">
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    </div>
-  </div>
-<% end %>
+</div>

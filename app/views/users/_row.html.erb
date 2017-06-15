@@ -1,0 +1,16 @@
+<tr>
+  <td>
+    <% if user.avatar_file_name %>
+    <%= image_tag user.avatar.url(:thumb) %>
+    <% end %>
+  </td>
+  <td><%= user.first_name %></td>
+  <td><%= user.last_name %></td>
+  <td><%= user.email %></td>
+  <% if current_user == user %>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, class: 'destroy_user', method: 'DELETE', remote: true %></td>
+    <td><%= 'logged in' %></td>
+  <% end %>
+</tr>

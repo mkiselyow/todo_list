@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   def index
     @users = User.all
     @projects = Project.all
+    @user = User.new
   end
 
   def sort
