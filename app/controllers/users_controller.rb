@@ -29,6 +29,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @users = User.all
+    @projects = Project.all
 
     respond_to do |format|
       if @user.save
@@ -38,8 +40,8 @@ class UsersController < ApplicationController
         format.html { redirect_to root_url, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.js
-        format.html { render :new }
+        format.js #{ render nothing: true }
+        format.html { render "static_pages/index" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -71,7 +73,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.js #{ render nothing: true }
-      format.html { redirect_to root_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to action: :index }
       format.json { head :no_content }
     end
   end
