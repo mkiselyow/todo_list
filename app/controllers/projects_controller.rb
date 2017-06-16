@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @projects = Project.all
   end
 
   # GET /projects/1/edit
@@ -27,12 +28,16 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = current_user.projects.build(project_params)
+    @users = User.all
+    @projects = Project.all
 
     respond_to do |format|
       if @project.save
+        format.js
         format.html { redirect_to root_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
+        format.js
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
@@ -58,6 +63,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
+      format.js
       format.html { redirect_to root_path, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end

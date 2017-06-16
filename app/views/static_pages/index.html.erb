@@ -39,57 +39,19 @@
         </div>
       </div>
     </div>
-    <% if @projects.any? %>
-      <% @projects.each do |project| %>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-info">
-            <div class="row">
-              <div class="col-md-3 col-xs-3"><strong><%= project.name %></strong> Project</div>
-              <div class="col-md-4 s_devises"><%= project.user.email %></div>
-              <div class="col-md-1 col-xs-3"><%= link_to 'Show', user_project_path(project.user, project) %></div>
-              <div class="col-md-1 col-xs-3"><%= link_to 'Edit', edit_user_project_path(project.user, project) %></div>
-              <div class="col-md-1 col-xs-3"><%= link_to 'Destroy', delete_project_path(project.user, project), method: :delete, data: { confirm: 'Are you sure?' } %></div>
-              <div class="col-md-2 s_devises"><%= link_to 'New Task', new_project_task_path(project) %></div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <ul class="list-group sortable list">
-              <% project.tasks.each do |task| %>
-                <li class="list-group-item item 
-                  <% if current_user %>
-                    <% if current_user != task.user %>
-                      <%= 'disabled' %>
-                    <% end %>
-                  <% else %>
-                    <%= 'disabled' %>
-                  <% end %>" data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>">
-                  <div class="row">
-                    
-                    <div class="col-md-2 s_devises"><%= task.id %> Task</div>
-                    <div class="col-md-2 col-xs-3">
-                      <% if task.status %>
-                        <del>
-                      <% end %>
-                      <%= task.name %>
-                      <% if task.status %>
-                        </del>
-                      <% end %>
-                    </div>
-                    <div class="col-md-4 s_devises"><%= if task.deadline then task.deadline.strftime('%d/%m/%Y %H:%M') end %></div>
-                    <div class="col-md-1 col-xs-3"><%= link_to 'Show', project_task_path(project, task) %></div>
-                    <div class="col-md-1 col-xs-3"><%= link_to 'Edit', edit_project_task_path(project, task) %></div>
-                    <div class="col-md-1 col-xs-3"><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></div>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
+    <div class="projects">
+      <% if @projects.any? %>
+        <% @projects.each do |project| %>
+          <%= render  partial: "projects/project", locals: { project: project } %>
+        <% end %>
+      <% else %>
       <% end %>
-    <% else %>
-    <% end %>
+    </div>
+
     <% if signed_in? %>
-      <%= link_to "Create New Project", new_user_project_path(current_user), class: "btn btn-lg btn-success" %>
+      <%= link_to "Create New Project", '#', id: 'add_project', class: "btn btn-lg btn-success" %> 
+      <!-- new_user_project_path(current_user) -->
+      <%= render 'projects/form' %>
     <% else %>
       <%= link_to "Sign up today", '#', id: 'add_user', class: "btn btn-lg btn-success" %>
       <%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-lg btn-success" %>
