@@ -3,11 +3,10 @@
     <div class="row">
       <div class="col-md-3 col-xs-3"><strong><%= project.name %></strong> Project</div>
       <div class="col-md-4 s_devises"><%= project.user.email %></div>
-      <div class="col-md-1 col-xs-3"><%= link_to 'Show', user_project_path(project.user, project) %></div>
-      <div class="col-md-1 col-xs-3"><%= link_to 'Edit', edit_user_project_path(project.user, project) %></div>
-      <div class="col-md-1 col-xs-3"><%= link_to 'Destroy', project, class: 'destroy_project', method: :delete, remote: true %></div>
+      <div class="col-md-1 col-md-offset-2 col-xs-3"><%= link_to '', edit_user_project_path(project.user, project), class: 'glyphicon glyphicon-wrench', 'aria-hidden' => true, 'title' => 'rename' %></div>
+      <div class="col-md-1 col-xs-3"><%= link_to '', project, class: 'destroy_project glyphicon glyphicon-trash', method: :delete, remote: true, 'aria-hidden' => true, 'title' => 'delete project' %></div>
       <!-- delete_project_path(project.user, project) -->
-      <div class="col-md-2 s_devises"><%= link_to 'New Task', new_project_task_path(project) %></div>
+      <div class="col-md-1 s_devises"><%= link_to '', new_project_task_path(project), class: 'glyphicon glyphicon-plus', 'aria-hidden' => true, 'title' => 'new task' %></div>
     </div>
   </li>
   <li class="list-group-item">
@@ -34,9 +33,9 @@
               <% end %>
             </div>
             <div class="col-md-4 s_devises"><%= if task.deadline then task.deadline.strftime('%d/%m/%Y %H:%M') end %></div>
-            <div class="col-md-1 col-xs-3"><%= link_to 'Show', project_task_path(project, task) %></div>
-            <div class="col-md-1 col-xs-3"><%= link_to 'Edit', edit_project_task_path(project, task) %></div>
-            <div class="col-md-1 col-xs-3"><%= link_to 'Destroy', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' } %></div>
+            <div class="col-md-1 col-md-offset-1 col-xs-3"><%= link_to '', project_task_path(project, task), class: 'glyphicon glyphicon-search', 'aria-hidden' => true, 'title' => 'show task' %></div>
+            <div class="col-md-1 col-xs-3"><%= link_to '', edit_project_task_path(project, task), class: 'glyphicon glyphicon-pencil', 'aria-hidden' => true, 'title' => 'edit task' %></div>
+            <div class="col-md-1 col-xs-3"><%= link_to '', delete_comment_path(project, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-trash', 'aria-hidden' => true, 'title' => 'delete task' %></div>
           </div>
         </li>
       <% end %>

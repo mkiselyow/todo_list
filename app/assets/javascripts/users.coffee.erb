@@ -53,6 +53,11 @@ $(document).ready ->
     ), 2000
     false
   notice_hiding()
+  #description hiding
+  $('.super_functions').hide()
+  $('#description').on 'click', ->
+    $('.super_functions').toggle(1000)
+    false
   #practice
   $('p').click ->
     $(this).hide()
