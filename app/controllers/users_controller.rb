@@ -72,9 +72,9 @@ class UsersController < ApplicationController
       @user.destroy
     end
     respond_to do |format|
-      format.js #{ render nothing: true }
+      format.js { redirect_to root_url, notice: 'User was successfully deleted.' }
       format.html { redirect_to action: :index }
-      format.json { head :no_content }
+      format.json #{ head :no_content }
     end
   end
 
