@@ -55,8 +55,30 @@ $(document).ready ->
   notice_hiding()
   #description hiding
   $('.super_functions').hide()
+  $('#super_functions').hide()
   $('#description').on 'click', ->
     $('.super_functions').toggle(1000)
+    $('#super_functions').toggle(1000)
+    false
+  #tasks
+  $('.new_task').hide()
+  $('body').on 'click', '.add_task', ->
+    $(this).closest('ul').find('.new_task').toggle(1000)
+    false
+  # $('.new_project').mouseleave ->
+  #   $('#add_project').show(1000)
+  #   $('.new_project').toggle(1000)
+  #   false
+  # $('.new_project').on 'ajax:success', ->
+  #   document.getElementById("notice").innerHTML = "Project created via AJAX"
+  #   $('#notice').show()
+  #   notice_hiding()
+  #   false
+  $('ul.list-group.sortable.list').on 'ajax:success', '.destroy_task', ->
+    $(this).closest('li.list-group-item.item').remove()
+    # document.getElementById("notice").innerHTML = "Project has been deleted"
+    # $('#notice').show()
+    # notice_hiding()
     false
   #practice
   $('p').click ->

@@ -7,6 +7,9 @@ class StaticPagesController < ApplicationController
     @projects = Project.all
     @user = User.new
     @project = Project.new
+    #task ajax create
+    @task = Task.new
+    #@project = Project.find(params[:project_id])
   end
 
   def sort

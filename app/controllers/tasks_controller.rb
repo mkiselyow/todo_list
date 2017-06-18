@@ -21,7 +21,6 @@ class TasksController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     if current_user == @project.user
-      @tasks = @project.tasks.build(task_params)
       @tasks.user_id = current_user.id
     else
       redirect_to root_path, notice: 'You can\'t create task for this project.'
@@ -40,13 +39,17 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @tasks = @project.tasks.build(task_params)
     @tasks.user_id = current_user.id
+    @users = User.all
+    @projects = Project.all
 
     respond_to do |format|
       if @tasks.save
+        format.js
         format.html { redirect_to root_path, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
-        format.html { render :new }
+        format.js
+        format.html { redirect_to root_path, notice: 'There was a problem.' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -71,6 +74,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
+      format.js
       format.html { redirect_to root_path, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end

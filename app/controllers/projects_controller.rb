@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
         format.json { render :show, status: :created, location: @project }
       else
         format.js
-        format.html { render :new }
+        format.html { redirect_to root_path, notice: 'Project get errors.' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end

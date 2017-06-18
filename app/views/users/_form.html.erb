@@ -15,23 +15,23 @@
     <div class="actions">
       <div class="field">
         <%= f.label :first_name %><br>
-        <%= f.text_field :first_name, placeholder: "name" %>
+        <%= f.text_field :first_name, placeholder: "name", required: true %>
       </div>
       <div class="field">
         <%= f.label :last_name %><br>
-        <%= f.text_field :last_name, placeholder: "surname" %>  
+        <%= f.text_field :last_name, placeholder: "surname", required: true %>  
       </div>
       <div class="field">
         <%= f.label :email %><br>
-        <%= f.text_field :email, placeholder: "email" %>
+        <%= f.text_field :email, placeholder: "email", required: true %>
       </div>
       <div class="field">
         <%= f.label :password %><br>
-        <%= f.password_field :password, placeholder: "password" %>
+        <%= f.password_field :password, placeholder: "password", required: true %>
       </div>
       <div class="field">
         <%= f.label :password_confirmation, "Confirm Password" %><br>
-        <%= f.password_field :password_confirmation, placeholder: "confirmation" %>
+        <%= f.password_field :password_confirmation, placeholder: "confirmation", required: true %>
       </div>
       <div class="field">
         <%= f.label :avatar %><br>

@@ -1,0 +1,27 @@
+<li class="list-group-item item 
+  <% if current_user %>
+    <% if current_user != task.user %>
+      <%= 'disabled' %>
+    <% end %>
+  <% else %>
+    <%= 'disabled' %>
+  <% end %>" data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>">
+  <div class="row">
+    
+    <div class="col-md-2 s_devises"><%= task.id %> Task</div>
+    <div class="col-md-2 col-xs-3">
+      <% if task.status %>
+        <del>
+      <% end %>
+      <%= task.name %>
+      <% if task.status %>
+        </del>
+      <% end %>
+    </div>
+    <div class="col-md-4 s_devises"><%= if task.deadline then task.deadline.strftime('%d/%m/%Y %H:%M') end %></div>
+    <div class="col-md-1 col-md-offset-1 col-xs-3"><%= link_to '', project_task_path(project, task), class: 'glyphicon glyphicon-search', 'aria-hidden' => true, 'title' => 'show task' %></div>
+    <div class="col-md-1 col-xs-3"><%= link_to '', edit_project_task_path(project, task), class: 'glyphicon glyphicon-pencil', 'aria-hidden' => true, 'title' => 'edit task' %></div>
+    <div class="col-md-1 col-xs-3"><%= link_to '', delete_comment_path(project, task), method: :delete, remote: true, class: 'destroy_task glyphicon glyphicon-trash', 'aria-hidden' => true, 'title' => 'delete task' %></div>
+  </div>
+  <!-- delete_comment_path(project, task) -->
+</li>
