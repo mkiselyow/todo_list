@@ -74,6 +74,11 @@ $(document).ready ->
     $('#notice').show()
     notice_hiding()
     false
+  $('.new_task .actions').on 'ajax:success', ->
+    document.getElementById("notice").innerHTML = "Task created via AJAX"
+    $('#notice').show()
+    notice_hiding()
+    false
   $('ul.list-group.sortable.list').on 'ajax:success', '.destroy_task', ->
     $(this).closest('li.list-group-item.item').remove()
     document.getElementById("notice").innerHTML = "Task has been deleted"

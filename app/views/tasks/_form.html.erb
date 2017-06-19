@@ -1,5 +1,5 @@
 <li class="new_task pr<%= project.id %> list-group-item item" name="pr<%= project.id %>">
-  <%= form_for([project, @task]) do |f| %>
+  <%= form_for([project, @task], remote: true) do |f| %>
     <div class="row">
       <div class="field col-md-1 col-xs-4 status">
         <%= f.check_box :status, 'placeholder' => :status, size: 10 %>
@@ -22,9 +22,6 @@
             </span>
         </div>
       </div>
-
-
-
     </div>
     <div class="row">
       <div class="field col-md-10 col-xs-10">

@@ -1,1 +1,3 @@
-$('ul.list-group.pr<%= project.id %>').append("<%= j(render 'task', task: @task) %>");
+$('ul.list-group.pr<%= @tasks.project.id %> .list-group').append("<%= j(render 'task', task: @tasks) %>")
+$('#task<%= @tasks.id %>').hide()
+$('#task<%= @tasks.id %>').show(2000)
