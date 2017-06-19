@@ -1,44 +1,43 @@
-<li class="new_task pr<%= project.id %>" name="pr<%= project.id %>">
+<li class="new_task pr<%= project.id %> list-group-item item" name="pr<%= project.id %>">
   <%= form_for([project, @task]) do |f| %>
-    
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name, id: :task_name, required: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :priority %>
-      <%= f.number_field :priority, id: :task_priority %>
-    </div>
-
-    <div class="field">
-      <%= f.label :status %>
-      <%= f.check_box :status %>
-    </div>
-
-    <div class="field">
-      <%= f.label :comment %>
-      <%= f.text_field :comment %>
-    </div>
-
-    <div class="field">
-      <div class='input-group date' id='datetimepicker1'>
-          <input type='text' class="form-control" id="task_deadline" name="task[deadline]" style="display: none" />
-          <%= f.text_field :deadline, id: :deadline, class: 'form-control' %>
-          <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-          </span>
+    <div class="row">
+      <div class="field col-md-1 status">
+        <%= f.check_box :status, 'placeholder' => :status, size: 10 %>
       </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#datetimepicker1').datetimepicker({format: 'DD-MM-YYYY HH:MM'});
-          });
-      </script>
+
+      <div class="field col-md-3">
+        <%= f.text_field :name, id: :task_name, required: true, 'placeholder' => :task_name, size: 10 %>
+      </div>
+
+      <div class="field col-md-2">
+        <%= f.number_field :priority, id: :task_priority, 'placeholder' => :task_priority, min: 0 , max: 0 %>
+      </div>
+
+      <div class="field col-md-6">
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" id="task_deadline" name="task[deadline]" style="display: none" />
+            <%= f.text_field :deadline, id: :deadline, class: 'form-control', 'placeholder' => :deadline %>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({format: 'DD-MM-YYYY HH:MM'});
+            });
+        </script>
+      </div>
+
+
+
     </div>
-
-
-    <div class="actions">
-      <%= f.submit %>
+    <div class="row">
+      <div class="field col-md-10">
+        <%= f.text_field :comment, 'placeholder' => :comment, size: 60 %>
+      </div>
+      <div class="actions col-md-2">
+        <%= f.submit '+' %>
+      </div>
     </div>
   <% end %>
 </li>

@@ -19,6 +19,23 @@
   text-align: left;
 }
 
-.list-group-item.item {
+.item {
   list-style-type: none;
+}
+
+.new_task .row {
+  height: 42px;
+}
+
+.new_task .row input.form-control, .new_task .row span.input-group-addon {
+  height: 26px;
+  padding: 4px 12px;
+}
+
+.new_task .row .status {
+  line-height: inherit;
+}
+
+.new_task {
+  background-color: #eeeeee;
 }
