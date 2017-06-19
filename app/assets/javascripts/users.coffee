@@ -61,9 +61,20 @@ $(document).ready ->
     $('#super_functions').toggle(1000)
     false
   #tasks
-  # $('.new_task').hide()
+  $('.new_task').hide()
+  $('.new_task').attr("draggable", "false")
   $('body').on 'click', '.add_task', ->
     $(this).closest('ul').find('.new_task').toggle(1000)
+    false
+  $('li.edit_task').hide()
+  $('li.edit_task').attr("draggable", "false")
+  $('body').on 'click', '.ed_task', ->
+    $(this).closest('li').toggle(1000)
+    $(this).closest('.task_each_div').find('li.edit_task').toggle(1000)
+    false
+  $('body').on 'click', '.back', ->
+    $(this).closest('li').toggle(1000)
+    $(this).closest('.task_each_div').find('li.list-group-item.item.task').toggle(1000)
     false
   # $('.new_project').mouseleave ->
   #   $('#add_project').show(1000)
@@ -73,11 +84,7 @@ $(document).ready ->
     document.getElementById("notice").innerHTML = "Task created via AJAX"
     $('#notice').show()
     notice_hiding()
-    false
-  $('.new_task .actions').on 'ajax:success', ->
-    document.getElementById("notice").innerHTML = "Task created via AJAX"
-    $('#notice').show()
-    notice_hiding()
+    $('.new_task').hide(1000)
     false
   $('ul.list-group.sortable.list').on 'ajax:success', '.destroy_task', ->
     $(this).closest('li.list-group-item.item').remove()

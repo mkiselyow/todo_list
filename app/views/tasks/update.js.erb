@@ -1,0 +1,5 @@
+$('ul.list-group.pr<%= @task.project.id %>').replaceWith("<%= j(render  partial: 'projects/project', locals: { project: @task.project }) %>")
+$('li.edit_task').hide()
+$('.new_task').hide()
+$('li.edit_task').attr("draggable", "false")
+$('.new_task').attr("draggable", "false")

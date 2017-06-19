@@ -1,4 +1,4 @@
-<li class="new_task pr<%= project.id %> list-group-item item" name="pr<%= project.id %>" draggable="false" >
+<li class="edit_task list-group-item item" draggable="false" >
   <%= form_for([project, task], remote: true) do |f| %>
     <div class="row">
       <div class="field col-md-1 col-xs-4 status">
@@ -24,11 +24,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="field col-md-10 col-xs-10">
+      <div class="field col-md-8 col-xs-8">
         <%= f.text_field :comment, 'placeholder' => :comment, size: 50 %>
       </div>
+      <div class="field col-md-2 col-xs-2">
+        <%= link_to '', '#', class: 'back glyphicon glyphicon-floppy-remove', 'aria-hidden' => true, 'title' => 'back to task' %>
+      </div>
       <div class="actions col-md-2 col-xs-2">
-        <%= f.submit '+' %>
+        <%= button_tag "", type: 'submit', class: "glyphicon glyphicon-floppy-saved", 'aria-hidden' => true, 'title' => 'save changes' %>
       </div>
     </div>
   <% end %>

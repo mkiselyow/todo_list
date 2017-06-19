@@ -1,3 +1,4 @@
-$('ul.list-group.pr<%= @tasks.project.id %> .list-group').append("<%= j(render 'task', task: @tasks) %>")
+// $('ul.list-group.pr<%= @tasks.project.id %> .list-group').append("<%= j(render 'task', task: @tasks) %>")
+$("<%= j(render 'task', task: @tasks) %>").insertBefore( ".new_task.pr<%= @tasks.project.id %>" )
 $('#task<%= @tasks.id %>').hide()
-$('#task<%= @tasks.id %>').show(2000)
+$('#task<%= @tasks.id %>').show(1000)
