@@ -1,41 +1,36 @@
 <li class="new_task pr<%= project.id %> list-group-item item" name="pr<%= project.id %>">
   <%= form_for([project, @task]) do |f| %>
     <div class="row">
-      <div class="field col-md-1 status">
+      <div class="field col-md-1 col-xs-4 status">
         <%= f.check_box :status, 'placeholder' => :status, size: 10 %>
       </div>
 
-      <div class="field col-md-3">
+      <div class="field col-md-3 col-xs-4">
         <%= f.text_field :name, id: :task_name, required: true, 'placeholder' => :task_name, size: 10 %>
       </div>
 
-      <div class="field col-md-2">
+      <div class="field col-md-2 col-xs-4">
         <%= f.number_field :priority, id: :task_priority, 'placeholder' => :task_priority, min: 0 , max: 0 %>
       </div>
 
-      <div class="field col-md-6">
-        <div class='input-group date' id='datetimepicker1'>
+      <div class="field col-md-6 col-xs-12">
+        <div class='input-group date datetimepicker1'>
             <input type='text' class="form-control" id="task_deadline" name="task[deadline]" style="display: none" />
             <%= f.text_field :deadline, id: :deadline, class: 'form-control', 'placeholder' => :deadline %>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
         </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker({format: 'DD-MM-YYYY HH:MM'});
-            });
-        </script>
       </div>
 
 
 
     </div>
     <div class="row">
-      <div class="field col-md-10">
-        <%= f.text_field :comment, 'placeholder' => :comment, size: 60 %>
+      <div class="field col-md-10 col-xs-10">
+        <%= f.text_field :comment, 'placeholder' => :comment, size: 50 %>
       </div>
-      <div class="actions col-md-2">
+      <div class="actions col-md-2 col-xs-2">
         <%= f.submit '+' %>
       </div>
     </div>

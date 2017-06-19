@@ -61,7 +61,7 @@ $(document).ready ->
     $('#super_functions').toggle(1000)
     false
   #tasks
-  $('.new_task').hide()
+  # $('.new_task').hide()
   $('body').on 'click', '.add_task', ->
     $(this).closest('ul').find('.new_task').toggle(1000)
     false
@@ -79,6 +79,10 @@ $(document).ready ->
     document.getElementById("notice").innerHTML = "Task has been deleted"
     $('#notice').show()
     notice_hiding()
+    false
+  #datetimepicker script
+  $ ->
+    $('.datetimepicker1').datetimepicker format: 'DD-MM-YYYY HH:MM'
     false
   #practice
   $('p').click ->
