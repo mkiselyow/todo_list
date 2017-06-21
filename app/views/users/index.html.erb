@@ -1,0 +1,20 @@
+<div>
+  <h1>Users</h1>
+  <table class="table table-striped">
+    <thead>
+        <th>Image</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Destroy</th>
+        <th>Activity</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <%= render 'users/row', user: user %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

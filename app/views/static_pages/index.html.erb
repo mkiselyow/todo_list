@@ -1,24 +1,4 @@
 <% #if signed_in? %>
-  <div>
-    <h1>Users</h1>
-    <table class="table table-striped">
-      <thead>
-          <th>Image</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Email</th>
-          <th>Show</th>
-          <th>Edit</th>
-          <th>Destroy</th>
-          <th>Activity</th>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <%= render 'users/row', user: user %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
 <% #else %>
   <div class="jumbotron">
     <div class="container">
@@ -60,7 +40,7 @@
   </div>
 
   <div class="row marketing">
-    <%= render 'users/form' %>
+    <%= render  partial: 'users/form', locals: { user: @user } %>
     <div class="col-lg-6">
       <h4>Subheading</h4>
       <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>

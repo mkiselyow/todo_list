@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   before_action :authorized, except: [:create, :fb_create, :new]
 
   def create
-    if params[:session] && params[:email]
+    if params[:session] && params[:session][:email]
       user = User.find_by_email(params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
         session[:user_id] = user.id
@@ -20,7 +20,12 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     sign_out
-    redirect_to root_url, notice: "Logged Out!"
+    # redirect_to root_url, notice: "Logged Out!"
+    respond_to do |format|
+      format.js { redirect_to root_url, notice: 'Session was successfully deleted.' }
+      format.html { redirect_to root_url, notice: 'Session was successfully deleted.' }
+      format.json { render :show, status: :created, location: @task }
+    end
   end
 
   def fb_create

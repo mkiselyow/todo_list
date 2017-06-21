@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   $('.new_user').hide()
   $('body').on 'click', '#add_user', ->
     $('.new_user').toggle(1000)
@@ -19,10 +19,10 @@ $(document).ready ->
     $('#notice').show()
     notice_hiding()
     false
-  $('.new_user').mouseleave ->
-    $('#add_user').show(1000)
-    $('.new_user').toggle(1000)
-    false
+  # $('.new_user').mouseleave ->
+  #   $('#add_user').show(1000)
+  #   $('.new_user').toggle(1000)
+  #   false
   #projects
   $('.new_project').hide()
   $('body').on 'click', '#add_project', ->
@@ -92,30 +92,45 @@ $(document).ready ->
     $('#notice').show()
     notice_hiding()
     false
+  #sessions ajax
+  $('body').on 'click', '.destroy_session', ->
+    $('li.edit_task').hide()
+    $('.new_task').hide()
+    $('.new_user').hide()
+    false
+  $('.destroy_session').on 'ajax:success', ->
+    console.log 'Session deleted via AJAX'
+    false
   #datetimepicker script
   $ ->
     $('.datetimepicker1').datetimepicker format: 'DD-MM-YYYY HH:MM'
     false
+  #edit user
+  $('body').on 'click', '.edit_user', ->
+    # $(this).closest('tr').find('td').toggle(1000)
+    $('.new_user').toggle(1000)
+    # $('#add_user').hide(1000)
+    false
   #practice
-  $('p').click ->
-    $(this).hide()
-    false
-  $('h4').click ->
-    $('p').toggle(1000)
-    false
-  $('h4').hover (->
-    console.log 'User deleted via AJAX'
-    false
-  ), ->
-    console.log 'User created via AJAX'
-    false
-  $('p').on
-    mouseenter: ->
-      $(this).css 'background-color', 'lightgray'
-      false
-    mouseleave: ->
-      $(this).css 'background-color', 'lightblue'
-      false
-    click: ->
-      $(this).css 'background-color', 'yellow'
-      false
+  # $('p').click ->
+  #   $(this).hide()
+  #   false
+  # $('h4').click ->
+  #   $('p').toggle(1000)
+  #   false
+  # $('h4').hover (->
+  #   console.log 'User deleted via AJAX'
+  #   false
+  # ), ->
+  #   console.log 'User created via AJAX'
+  #   false
+  # $('p').on
+  #   mouseenter: ->
+  #     $(this).css 'background-color', 'lightgray'
+  #     false
+  #   mouseleave: ->
+  #     $(this).css 'background-color', 'lightblue'
+  #     false
+  #   click: ->
+  #     $(this).css 'background-color', 'yellow'
+  #     false

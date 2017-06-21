@@ -1,0 +1,6 @@
+// $('body').on('click', '.edit_user .user<%= user.id %>', function() {
+//   $('.new_user .user<%= user.id %>').toggle(1000);
+//   return false;
+// });
+$('.edit_user.user#{user.id}')closest('tr').replaceWith("<%= j(render  partial: 'users/row', locals: { user: @user }) %>")
+$('.new_task').hide()

@@ -1,9 +1,10 @@
 <ul class="list-group pr<%= project.id %>", name="pr<%= project.id %>" >
   <li class="list-group-item list-group-item-info">
     <div class="row">
-      <div class="col-md-3 col-xs-3"><strong><%= project.name %></strong> Project</div>
+      <div class="col-md-3 col-xs-3"><strong><%= project.name %></strong></div>
+      <div class="col-md-1 s_devises"><div><span class="glyphicon glyphicon-user" aria-hidden="true" title="user"></span></div></div>
       <div class="col-md-4 s_devises"><%= project.user.email %></div>
-      <div class="col-md-1 col-md-offset-2 col-xs-3"><%= link_to '', edit_user_project_path(project.user, project), class: 'glyphicon glyphicon-wrench', 'aria-hidden' => true, 'title' => 'rename' %></div>
+      <div class="col-md-1 col-md-offset-1 col-xs-3"><%= link_to '', edit_user_project_path(project.user, project), class: 'glyphicon glyphicon-wrench', 'aria-hidden' => true, 'title' => 'rename' %></div>
       <div class="col-md-1 col-xs-3"><%= link_to '', project, class: 'destroy_project glyphicon glyphicon-trash', method: :delete, remote: true, 'aria-hidden' => true, 'title' => 'delete project' %></div>
       <!-- delete_project_path(project.user, project) -->
       <div class="col-md-1 col-xs-3"><%= link_to '', '#', class: 'add_task glyphicon glyphicon-plus pr#{project.id}', 'aria-hidden' => true, 'title' => 'new task', 'name' => "pr#{project.id}" %></div>

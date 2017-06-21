@@ -9,8 +9,9 @@
   <td><%= user.email %></td>
   <% if current_user == user %>
     <td><%= link_to '', user, class: 'glyphicon glyphicon-search', 'aria-hidden' => true, 'title' => 'show user' %></td>
-    <td><%= link_to '', edit_user_path(user), class: 'glyphicon glyphicon-pencil', 'aria-hidden' => true, 'title' => 'edit user' %></td>
+    <td><%= link_to '', edit_user_path(user), class: 'edit_user user#{user.id} glyphicon glyphicon-pencil', 'aria-hidden' => true, 'title' => 'edit user', remote: true %></td>
     <td><%= link_to '', user, class: 'destroy_user glyphicon glyphicon-trash', method: 'DELETE', remote: true, 'aria-hidden' => true, 'title' => 'delete user' %></td>
     <td><span class="glyphicon glyphicon-eye-open" aria-hidden="true" title="user logged in" ></span></td>
+    <%= render partial: 'users/form', locals: { user: user }  %>
   <% end %>
 </tr>

@@ -1,0 +1,7 @@
+<%= form_for([project, task], remote: true) do |f| %>
+  <div id="done_task_task<%= task.id %>">
+    <div class="field status">
+      <%= f.check_box :status, :onclick => "$('form#edit_task_#{task.id}').submit();", 'placeholder' => :status, size: 10 %>
+    </div>
+  </div>
+<% end %>

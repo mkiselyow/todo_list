@@ -8,7 +8,17 @@
   <% end %>" data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>" id="task<%= task.id %>">
   <div class="row">
     
-    <div class="col-md-2 s_devises"><%= task.id %> Task</div>
+    <div class="col-md-2 s_devises">
+      <% if current_user %>
+        <% if current_user == task.user %>
+          <%= render  partial: "tasks/done_task", locals: { task: task, project: task.project, 'draggable' => false } %>
+        <% else %>
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true" title="sign in to have your own tasks"></span>
+        <% end %>
+      <% else %>
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true" title="sign in to have your own tasks"></span>
+      <% end %>
+    </div>
     <div class="col-md-2 col-xs-3">
       <% if task.status %>
         <del>
@@ -18,11 +28,15 @@
         </del>
       <% end %>
     </div>
-    <div class="col-md-4 s_devises"><%= if task.deadline then task.deadline.strftime('%d/%m/%Y %H:%M') end %></div>
-    <div class="col-md-1 col-md-offset-1 col-xs-3"><%= link_to '', project_task_path(task.project, task), class: 'glyphicon glyphicon-search', 'aria-hidden' => true, 'title' => 'show task' %></div>
-    <div class="col-md-1 col-xs-3"><%= link_to '', '#', class: 'ed_task glyphicon glyphicon-pencil', 'aria-hidden' => true, 'title' => 'edit task', remote: true %></div>
-    <!-- edit_project_task_path(task.project, task) -->
-    <div class="col-md-1 col-xs-3"><%= link_to '', delete_comment_path(task.project, task), method: :delete, remote: true, class: 'destroy_task glyphicon glyphicon-trash', 'aria-hidden' => true, 'title' => 'delete task' %></div>
+    <% if current_user %>
+      <% if current_user == task.user %>
+        <div class="col-md-4 s_devises"><%= if task.deadline then task.deadline.strftime('%d/%m/%Y %H:%M') end %></div>
+        <div class="col-md-1 col-md-offset-1 col-xs-3"><%= link_to '', project_task_path(task.project, task), class: 'glyphicon glyphicon-search', 'aria-hidden' => true, 'title' => 'show task' %></div>
+        <div class="col-md-1 col-xs-3"><%= link_to '', '#', class: 'ed_task glyphicon glyphicon-pencil', 'aria-hidden' => true, 'title' => 'edit task', remote: true %></div>
+        <!-- edit_project_task_path(task.project, task) -->
+        <div class="col-md-1 col-xs-3"><%= link_to '', delete_comment_path(task.project, task), method: :delete, remote: true, class: 'destroy_task glyphicon glyphicon-trash', 'aria-hidden' => true, 'title' => 'delete task' %></div>
+        <!-- delete_comment_path(project, task) -->
+      <% end %>
+    <% end %>
   </div>
-  <!-- delete_comment_path(project, task) -->
 </li>

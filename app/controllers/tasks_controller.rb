@@ -65,7 +65,7 @@ class TasksController < ApplicationController
         format.json { render :show, status: :ok, location: @task }
       else
         format.js
-        format.html { render :edit }
+        format.html { redirect_to root_path, notice: 'There was a problem.' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
