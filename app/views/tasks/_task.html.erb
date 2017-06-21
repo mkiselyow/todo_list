@@ -5,8 +5,8 @@
     <% end %>
   <% else %>
     <%= 'disabled' %>
-  <% end %>" data-id="<%= task.id %>" data-toggle="tooltip" data-placement="left" title="<%= task.comment %>" id="task<%= task.id %>">
-  <div class="row">
+  <% end %>" data-id="<%= task.id %>" data-toggle="popover" data-placement="right" data-content="<%= render partial: 'tasks/task_popover', locals: { task: task} %>" data-trigger="hover" id="task<%= task.id %>" data-html="true">
+  <div class="row" data-toggle="popover" data-placement="right" data-content="<%= render partial: 'tasks/task_popover', locals: { task: task} %>" data-trigger="hover" data-html="true">
     
     <div class="col-md-2 col-xs-2">
       <% if current_user %>

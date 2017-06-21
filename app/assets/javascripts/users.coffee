@@ -111,6 +111,10 @@ $(document).on 'turbolinks:load', ->
     $('.new_user').toggle(1000)
     # $('#add_user').hide(1000)
     false
+  #popovers enable
+  $ ->
+    $('[data-toggle="popover"]').popover()
+    false
   #practice
   # $('p').click ->
   #   $(this).hide()
