@@ -44,3 +44,47 @@
 .edit_task .actions input {
   padding: 12px 12px;
 }
+
+nav.navbar-fixed-top {
+  top: 3%;
+  right: 30%;
+}
+
+
+nav.navbar-fixed-top ul.nav.nav-pills.pull-right li.set_bg a:hover {
+  background-color: #eeeeee;
+  color: #333333;
+}
+
+nav.navbar-fixed-top ul.nav.nav-pills.pull-right li.set_bg a {
+  background-color: #23527c;
+  color: #fff;
+}
+
+@media all and (max-width: 995px) {
+  nav.navbar-fixed-top {
+    top: 0;
+    right: 0;
+    float: none;
+  }
+  nav.navbar-fixed-top ul {
+    float: none !important;
+    padding-left: 12%;
+  }
+  .header h3 {
+    margin-top: 5%;
+    text-align: center;
+  }
+  ._2pi8 {
+    width: 475px;
+  }
+}
+
+.list-group-item.item.task .edit_task {
+  background-color: transparent;
+}
+
+
+
+
+
