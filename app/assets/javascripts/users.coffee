@@ -9,13 +9,14 @@ $(document).on 'turbolinks:load', ->
     false
   $('.new_user').on 'ajax:success', ->
     document.getElementById("notice").innerHTML = "User created via AJAX"
+    $('.new_user').toggle(1000)
     $('#notice').show()
     notice_hiding()
     false
   $('table').on 'ajax:success', '.destroy_user', ->
     $(this).closest('tr').remove()
     document.getElementById("notice").innerHTML = "User has been deleted"
-    $('.new_user').hide()
+    $('.new_user').hide(1000)
     $('#notice').show()
     notice_hiding()
     false
@@ -30,17 +31,19 @@ $(document).on 'turbolinks:load', ->
     $('#add_project').hide(1000)
     $( "#project_name" ).focus()
     false
-  $('.new_project').mouseleave ->
-    $('#add_project').show(1000)
-    $('.new_project').toggle(1000)
-    false
+  # $('.new_project').mouseleave ->
+  #   $('#add_project').show(1000)
+  #   $('.new_project').toggle(1000)
+  #   false
   $('.new_project').on 'ajax:success', ->
     document.getElementById("notice").innerHTML = "Project created via AJAX"
+    $('.new_project').toggle(1000)
+    $('.new_task').hide()
     $('#notice').show()
     notice_hiding()
     false
   $('.jumbotron').on 'ajax:success', '.destroy_project', ->
-    $(this).closest('ul.list-group').remove()
+    $(this).closest('ul.list-group').remove(1000)
     document.getElementById("notice").innerHTML = "Project has been deleted"
     $('#notice').show()
     notice_hiding()
@@ -65,16 +68,19 @@ $(document).on 'turbolinks:load', ->
   $('.new_task').attr("draggable", "false")
   $('body').on 'click', '.add_task', ->
     $(this).closest('ul').find('.new_task').toggle(1000)
+    $('.new_task').attr("draggable", "false")
     false
   $('li.edit_task').hide()
   $('li.edit_task').attr("draggable", "false")
   $('body').on 'click', '.ed_task', ->
     $(this).closest('li').toggle(1000)
     $(this).closest('.task_each_div').find('li.edit_task').toggle(1000)
+    $('.task_each_div').attr("draggable", "false")
     false
   $('body').on 'click', '.back', ->
     $(this).closest('li').toggle(1000)
     $(this).closest('.task_each_div').find('li.list-group-item.item.task').toggle(1000)
+    $('.task_each_div').attr("draggable", "true")
     false
   # $('.new_project').mouseleave ->
   #   $('#add_project').show(1000)
@@ -82,12 +88,13 @@ $(document).on 'turbolinks:load', ->
   #   false
   $('.new_task').on 'ajax:success', ->
     document.getElementById("notice").innerHTML = "Task created via AJAX"
+    $('.new_task').hide(1000)
     $('#notice').show()
     notice_hiding()
     $('.new_task').hide(1000)
     false
   $('ul.list-group.sortable.list').on 'ajax:success', '.destroy_task', ->
-    $(this).closest('li.list-group-item.item').remove()
+    $(this).closest('li.list-group-item.item').remove(1000)
     document.getElementById("notice").innerHTML = "Task has been deleted"
     $('#notice').show()
     notice_hiding()
@@ -107,14 +114,13 @@ $(document).on 'turbolinks:load', ->
     false
   #edit user
   $('body').on 'click', '.edit_user', ->
-    # $(this).closest('tr').find('td').toggle(1000)
     $('.new_user').toggle(1000)
-    # $('#add_user').hide(1000)
     false
   #popovers enable
   $ ->
     $('[data-toggle="popover"]').popover()
     false
+  #partials not sortable
   #practice
   # $('p').click ->
   #   $(this).hide()

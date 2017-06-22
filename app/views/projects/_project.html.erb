@@ -13,23 +13,25 @@
   </li>
   <li class="list-group-item">
     <ul class="list-group sortable list">
-      <% project.tasks.each do |task| %>
-        <div class="task_each_div">
-          <%= render  partial: "tasks/task", locals: { task: task, project: project } %>
-          <% if current_user || (task.user == current_user) %>
-            <%= render  partial: "tasks/ed_form", locals: { task: task, project: project, 'draggable' => false } %>
-          <% end %>
-        </div>
+      <% if project.tasks %>
+        <% project.tasks.each do |task| %>
+          <div class="task_each_div">
+            <%= render  partial: "tasks/task", locals: { task: task, project: project } %>
+            <% if current_user || (task.user == current_user) %>
+              <%= render  partial: "tasks/ed_form", locals: { task: task, project: project, 'draggable' => false } %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
       <% if current_user %>
         <% if current_user == project.user %>
-          <%= render 'tasks/form', :project => project, :task => @task, 'draggable' => false %>
+          <%= render partial: 'tasks/form', locals: { task: @task, project: project, 'draggable' => false } %>
         <% else %>
           <%= render 'tasks/create_task_error', :project => project, 'draggable' => false %>
         <% end %>
       <% else %>
         <%= render 'tasks/create_task_error', :project => project, 'draggable' => false %>
-      <% end %>        
+      <% end %>
     </ul>
   </li>
 </ul>

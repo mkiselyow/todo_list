@@ -1,4 +1,5 @@
-
-<%= render 'user_info' %>
+<% if current_user %>
+  <%= render  partial: 'user_info', locals: { user: current_user } %>
+<% end %>
 
 <%= link_to 'Back', users_path %>

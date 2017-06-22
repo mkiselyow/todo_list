@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build(project_params)
     @users = User.all
     @projects = Project.all
+    @task = Task.new
 
     respond_to do |format|
       if @project.save

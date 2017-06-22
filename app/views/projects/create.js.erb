@@ -1,1 +1,1 @@
-$('.projects').append("<%= j(render 'project', project: @project) %>");
+$('.projects').append("<%= j(render partial: 'project', locals: { project: @project, task: @project.tasks }) %>");

@@ -32,7 +32,7 @@
     <% if signed_in? %>
       <%= link_to "Create New Project", '#', id: 'add_project', class: "btn btn-lg btn-success" %> 
       <!-- new_user_project_path(current_user) -->
-      <%= render 'projects/form' %>
+      <%= render partial: 'projects/form', locals: { project: @project } %>
     <% else %>
       <%= link_to "Sign up today", '#', id: 'add_user', class: "btn btn-lg btn-success" %>
       <%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-lg btn-success" %>
