@@ -37,6 +37,7 @@ $(document).on 'turbolinks:load', ->
   #   false
   $('.new_project').on 'ajax:success', ->
     document.getElementById("notice").innerHTML = "Project created via AJAX"
+    $('#add_project').toggle(1000)
     $('.new_project').toggle(1000)
     $('.new_task').hide()
     $('#notice').show()

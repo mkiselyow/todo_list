@@ -1,3 +1,4 @@
 $("<%= j(render 'task', task: @tasks) %>").insertBefore( ".new_task.pr<%= @tasks.project.id %>" )
 $('#task<%= @tasks.id %>').hide()
 $('#task<%= @tasks.id %>').show(1000)
+$('.new_task').hide(1000)
