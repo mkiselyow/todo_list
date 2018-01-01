@@ -84,10 +84,9 @@ nav.navbar-fixed-top ul.nav.nav-pills.pull-right li.set_bg a {
   background-color: transparent;
 }
 
-.col-md-3 .col-xs-4 {
+.col-md-3.col-xs-4 {
   overflow: hidden;
 }
-
 
 
 
