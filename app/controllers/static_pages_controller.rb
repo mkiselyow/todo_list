@@ -1,6 +1,4 @@
 class StaticPagesController < ApplicationController
-  require 'pry'
-
   before_action :authorized, except: [:index, :sort]
   before_action :correct_user_tasks
   
@@ -15,7 +13,6 @@ class StaticPagesController < ApplicationController
   end
 
   def sort
-    binding.pry
     params[:order].each do |key,value|
       if value[:id]
         @task = Task.find(value[:id])
