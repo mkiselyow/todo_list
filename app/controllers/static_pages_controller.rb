@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  require 'pry'
+
   before_action :authorized, except: [:index, :sort]
   before_action :correct_user_tasks
   
@@ -13,16 +15,19 @@ class StaticPagesController < ApplicationController
   end
 
   def sort
+    binding.pry
     params[:order].each do |key,value|
-      @task = Task.find(value[:id])
-      if @task.user == current_user
-        Task.find(value[:id]).update_attribute(:priority,value[:position])
-      # else
-      #   respond_to do |format|
-      #     format.js { redirect_to root_path, notice: 'There was a problem.' }
-      #     format.html { redirect_to root_path, notice: 'There was a problem.' }
-      #     format.json { redirect_to root_path, notice: 'There was a problem.' }
-      #   end
+      if value[:id]
+        @task = Task.find(value[:id])
+        if (@task.user == current_user) && Task.find(value[:id])
+          Task.find(value[:id]).update_attribute(:priority,value[:position])
+        # else
+        #   respond_to do |format|
+        #     format.js { redirect_to root_path, notice: 'There was a problem.' }
+        #     format.html { redirect_to root_path, notice: 'There was a problem.' }
+        #     format.json { redirect_to root_path, notice: 'There was a problem.' }
+        #   end
+        end
       end
     end
     render :nothing => true
