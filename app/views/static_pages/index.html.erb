@@ -35,11 +35,11 @@
       <%= render partial: 'projects/form', locals: { project: @project } %>
     <% else %>
       <%= link_to "Sign up today", '#', id: 'add_user', class: "btn btn-lg btn-success" %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-lg btn-success" %>
+<!--       <%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-lg btn-success" %> -->
     <% end %>
   </div>
 
-  <div class="row marketing">
+  <div class="row marketing" id="users_form">
     <center><%= render  partial: 'users/form', locals: { user: @user } %></center>
   </div>
   <center>

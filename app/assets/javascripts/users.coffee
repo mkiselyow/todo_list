@@ -6,6 +6,7 @@ $(document).on 'turbolinks:load', ->
   $('body').on 'click', '#add_user', ->
     $('.new_user').toggle(1000)
     $('#add_user').hide(1000)
+    document.location.href = 'https://' + document.location.hostname + ':' + document.location.port + '/' + '#users_form'
     false
   $('.new_user').on 'ajax:success', ->
     document.getElementById("notice").innerHTML = "User created via AJAX"

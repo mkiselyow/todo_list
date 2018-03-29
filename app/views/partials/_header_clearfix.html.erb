@@ -9,8 +9,9 @@
         <li></li>
       <% else %>
         <!-- <li role="presentation"><%= link_to "Sign Up", signup_path %></li> -->
-        <li class="set_bg" role="presentation"><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
+<!--         <li class="set_bg" role="presentation"><%= link_to "Sign in with Facebook", "/auth/facebook" %></li> -->
         <li class="set_bg" role="presentation"><%= link_to "Log In", signin_path %></li>
+        <li class="set_bg" role="presentation"><%= link_to "Sign up", '#', id: 'add_user', class: "btn btn-lg btn-success" %></li>
       <% end %>
     </li>
   </ul>
